@@ -5,15 +5,15 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{route('home')}}">
                         <x-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link href="{{route('home')}}" :active="request()->routeIs('home')">
+                        {{ __('Home') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                         </x-dropdown>
                     </div>
                 @endif
-
+                @auth()
                 <!-- Settings Dropdown -->
                 <div class="ms-3 relative">
                     <x-dropdown align="right" width="48">
@@ -122,6 +122,7 @@
                         </x-slot>
                     </x-dropdown>
                 </div>
+                @endauth
             </div>
 
             <!-- Hamburger -->
@@ -139,11 +140,12 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link href="{{route('home')}}" :active="request()->routeIs('home')">
+                {{ __('Home') }}
             </x-responsive-nav-link>
         </div>
 
+        @auth()
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="flex items-center px-4">
@@ -215,5 +217,6 @@
                 @endif
             </div>
         </div>
+        @endauth
     </div>
 </nav>
