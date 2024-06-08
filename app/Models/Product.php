@@ -32,7 +32,13 @@ class Product extends Model
     {
         return Attribute::make(
             get:  fn($value) => new Money($value, new Currency('USD')),
-            set: fn($value) => $value * 100,
+            set:  function ($value) {
+                if ($value instanceof Money) {
+                    return $value->getAmount();
+                }
+
+                return $value * 100;
+            },
         );
     }
 }
