@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Actions\Webshop\AddProductVariantToCart;
 use App\Models\Product as ProductModel;
 use Livewire\Component;
 
@@ -28,9 +29,10 @@ class Product extends Component
         return $this->product;
     }
 
-    public function addToCart()
+    public function addToCart(AddProductVariantToCart $addProductVariantToCart)
     {
         $this->validate();
+        $addProductVariantToCart->add($this->variant);
     }
 
     public function render()

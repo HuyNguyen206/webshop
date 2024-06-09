@@ -27,11 +27,13 @@ class DatabaseSeeder extends Seeder
                 return ['is_main_feature' => $sequence->index === 0];
             })->for($product)->create();
         });
+
+
         // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+         \App\Models\User::factory()->create([
+             'name' => 'huy',
+             'email' => 'nguyenlehuyuit@gmail.com',
+         ]);
     }
 }
