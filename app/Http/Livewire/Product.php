@@ -9,9 +9,28 @@ class Product extends Component
 {
     public ProductModel $product;
 
+    public $variant;
+
+    public function mount()
+    {
+       $this->variant = $this->product->productVariants()->value('id');
+    }
+
+    protected function rules()
+    {
+        return [
+            'variant' =>'required|exists:product_variants,id'
+        ];
+    }
+
     public function getProductProperty()
     {
         return $this->product;
+    }
+
+    public function addToCart()
+    {
+        $this->validate();
     }
 
     public function render()
