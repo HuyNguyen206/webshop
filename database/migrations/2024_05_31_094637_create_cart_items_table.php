@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(\App\Models\Cart::class);
             $table->foreignIdFor(\App\Models\ProductVariant::class);
-            $table->unsignedInteger('quantity');
+            $table->unsignedInteger('quantity')->default(1);
             $table->timestamps();
         });
     }
