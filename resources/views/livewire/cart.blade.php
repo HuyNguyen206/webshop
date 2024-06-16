@@ -1,23 +1,36 @@
-<div class="bg-white shadow p-4">
+<div class="bg-white shadow p-4 flex gap-2">
     <table class="table table-row">
         <thead>
         <tr>
             <th>
                 Product
             </th>
+            <th>
+                Size
+            </th>
+            <th>
+                Color
+            </th>
             <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
         </tr>
+        </thead>
         <tbody>
         @foreach($this->cart->cartItems as $cartItem)
-            <tr class="my-4">
-                <td>
+            <tr class="my-4 text-center">
+                <td class="w-1/5">
                     <img src="{{$cartItem->productVariant->product->featureImage->path}}" alt="">
-                    {{$cartItem->productVariant->product->name}} - {{$cartItem->productVariant->size}}
-                    - {{$cartItem->productVariant->color}}
+                    <p>{{$cartItem->productVariant->product->name}}</p>
                 </td>
                 <td>
-                    <div class="flex justify-between">
-
+                    {{$cartItem->productVariant->size}}
+                </td>
+                <td>
+                    {{$cartItem->productVariant->color}}
+                </td>
+                <td>
+                    <div class="flex justify-center gap-x-4">
 
                         <button wire:click="changeQuantity({{$cartItem->id}})">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -26,9 +39,7 @@
                             </svg>
                         </button>
 
-
                         <p>Quantity: {{$cartItem->quantity}}</p>
-
 
                         <button wire:click="changeQuantity({{$cartItem->id}}, 'remove')">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -38,7 +49,12 @@
                         </button>
 
                     </div>
+                </td>
+                <td>
                     <p>Price: {{$cartItem->productVariant->product->price}}</p>
+                </td>
+                <td>
+                    <p>Total: {{$cartItem->subtotal}}</p>
                 </td>
                 <td>
                     <button wire:click="delete({{$cartItem->id}})">
@@ -53,8 +69,28 @@
             </tr>
         @endforeach
         </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="6">
 
-        </thead>
+            </td>
+            <td>
+                {{
+                    $this->cart->total
+                }}
+            </td>
+        </tr>
+        </tfoot>
     </table>
+    <div class="rounded-lg shadow">
+        @guest()
+            <div>Please <a class="text-blue-600" href="{{route('register')}}">register</a> or  <a class="text-blue-600" href="{{route('login')}}">login</a> to continue</div>
+        @endguest
+        @auth()
+            <x-button wire:click="checkout">
+                Checkout
+            </x-button>
+        @endauth
+    </div>
 
 </div>
