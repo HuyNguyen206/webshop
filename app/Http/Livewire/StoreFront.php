@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Product;
+use App\Models\User;
 use Livewire\Component;
 
 class StoreFront extends Component
