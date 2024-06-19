@@ -2,10 +2,12 @@
 
 namespace App\Listeners;
 
+use App\Mail\OrderConfirmation;
 use App\Models\CartItem;
 use App\Models\OrderItem;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Cashier\Cashier;
 use Laravel\Cashier\Events\WebhookReceived;
 use Stripe\LineItem;
@@ -29,6 +31,7 @@ class StripeEventListener
             $sessionId = $event->payload['data']['object']['id'];
             DB::transaction(function () use ($sessionId) {
                 $session = Cashier::stripe()->checkout->sessions->retrieve($sessionId);
+
                 $user = User::find($session->metadata->user_id);
 
                 CartItem::query()->where('cart_id', $session->metadata->cart_id)->delete();
@@ -80,6 +83,8 @@ class StripeEventListener
                 });
 
                 $order->orderItems()->saveMany($orderItems);
+
+                Mail::to($user)->send(new OrderConfirmation($order));
             });
         }
 

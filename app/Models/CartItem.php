@@ -11,9 +11,16 @@ class CartItem extends Model
 {
     use HasFactory;
 
+    protected $touches = ['cart'];
+
     public function productVariant(): BelongsTo
     {
         return $this->belongsTo(ProductVariant::class);
+    }
+
+    public function cart(): BelongsTo
+    {
+        return $this->belongsTo(Cart::class);
     }
 
     public function subtotal(): Attribute

@@ -1,68 +1,144 @@
 {
     "api_version": "2024-04-10",
-    "created": 1718694624,
+    "created": 1718772929,
     "data": {
         "object": {
-            "amount": 1054296,
-            "amount_capturable": 0,
-            "amount_details": {
-                "tip": {}
+            "after_expiration": null,
+            "allow_promotion_codes": true,
+            "amount_subtotal": 424100,
+            "amount_total": 458028,
+            "automatic_tax": {
+                "enabled": true,
+                "liability": {
+                    "type": "self"
+                },
+                "status": "complete"
             },
-            "amount_received": 0,
-            "application": null,
-            "application_fee_amount": null,
-            "automatic_payment_methods": null,
-            "canceled_at": null,
-            "cancellation_reason": null,
-            "capture_method": "automatic",
-            "client_secret": "pi_3PSwBQJSpWIbVxO52pPrWJDr_secret_CTorR1yeWblIaFSyOhJLazCK1",
-            "confirmation_method": "automatic",
-            "created": 1718694624,
+            "billing_address_collection": null,
+            "cancel_url": "http://webshop.test/cart",
+            "client_reference_id": null,
+            "client_secret": null,
+            "consent": null,
+            "consent_collection": null,
+            "created": 1718772911,
             "currency": "usd",
+            "currency_conversion": null,
+            "custom_fields": [],
+            "custom_text": {
+                "after_submit": null,
+                "shipping_address": null,
+                "submit": null,
+                "terms_of_service_acceptance": null
+            },
             "customer": "cus_QJX0Tw8FrCR4qi",
-            "description": null,
-            "id": "pi_3PSwBQJSpWIbVxO52pPrWJDr",
+            "customer_creation": null,
+            "customer_details": {
+                "address": {
+                    "city": "Ho Chi Minh",
+                    "country": "VN",
+                    "line1": "Go vap",
+                    "line2": "P15",
+                    "postal_code": "12345",
+                    "state": null
+                },
+                "email": "nguyenlehuyuit@gmail.com",
+                "name": "Huy",
+                "phone": null,
+                "tax_exempt": "none",
+                "tax_ids": []
+            },
+            "customer_email": null,
+            "expires_at": 1718859311,
+            "id": "cs_test_b1DQVlCSUexdH91eDEvbW8UEkdJvgDW9AGUmlQ41q7CjsGszwMquT5y40c",
             "invoice": null,
-            "last_payment_error": null,
-            "latest_charge": null,
+            "invoice_creation": {
+                "enabled": false,
+                "invoice_data": {
+                    "account_tax_ids": null,
+                    "custom_fields": null,
+                    "description": null,
+                    "footer": null,
+                    "issuer": null,
+                    "metadata": {},
+                    "rendering_options": null
+                }
+            },
             "livemode": false,
-            "metadata": {},
-            "next_action": null,
-            "object": "payment_intent",
-            "on_behalf_of": null,
-            "payment_method": null,
+            "locale": null,
+            "metadata": {
+                "cart_id": "5",
+                "user_id": "1"
+            },
+            "mode": "payment",
+            "object": "checkout.session",
+            "payment_intent": "pi_3PTGYNJSpWIbVxO50phCs1nX",
+            "payment_link": null,
+            "payment_method_collection": "if_required",
             "payment_method_configuration_details": null,
             "payment_method_options": {
                 "card": {
-                    "installments": null,
-                    "mandate_options": null,
-                    "network": null,
                     "request_three_d_secure": "automatic"
                 }
             },
             "payment_method_types": [
                 "card"
             ],
-            "processing": null,
-            "receipt_email": null,
-            "review": null,
-            "setup_future_usage": null,
-            "shipping": null,
-            "source": null,
-            "statement_descriptor": null,
-            "statement_descriptor_suffix": null,
-            "status": "requires_payment_method",
-            "transfer_data": null,
-            "transfer_group": null
+            "payment_status": "paid",
+            "phone_number_collection": {
+                "enabled": false
+            },
+            "recovered_from": null,
+            "saved_payment_method_options": {
+                "allow_redisplay_filters": [
+                    "always"
+                ],
+                "payment_method_remove": null,
+                "payment_method_save": null
+            },
+            "setup_intent": null,
+            "shipping_address_collection": {
+                "allowed_countries": [
+                    "US",
+                    "VN",
+                    "NL"
+                ]
+            },
+            "shipping_cost": null,
+            "shipping_details": {
+                "address": {
+                    "city": "Ho Chi Minh",
+                    "country": "VN",
+                    "line1": "Go vap",
+                    "line2": "P15",
+                    "postal_code": "12345",
+                    "state": null
+                },
+                "name": "Huy"
+            },
+            "shipping_options": [],
+            "status": "complete",
+            "submit_type": null,
+            "subscription": null,
+            "success_url": "http://webshop.test/checkout-status?session_id={CHECKOUT_SESSION_ID}",
+            "tax_id_collection": {
+                "enabled": true
+            },
+            "total_details": {
+                "amount_discount": 0,
+                "amount_shipping": 0,
+                "amount_tax": 33928
+            },
+            "ui_mode": "hosted",
+            "url": null
         }
     },
-    "id": "evt_3PSwBQJSpWIbVxO52ILqYQQ8",
+    "id": "evt_1PTGYPJSpWIbVxO5w5Y6HzqH",
     "livemode": false,
     "object": "event",
     "pending_webhooks": 2,
     "request": {
-        "id": "req_aTkDvgzVnYfMLm",
-        "idempotency_key": "d99f57f5-0666-41df-aced-62ed8d79c406"
+        "id": null,
+        "idempotency_key": null
     },
-    "type": "payment_intent.created"
+    "type": "checkout.session.completed"
 }
