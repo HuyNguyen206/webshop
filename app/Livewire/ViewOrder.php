@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 class ViewOrder extends Component
@@ -13,7 +14,8 @@ class ViewOrder extends Component
         $this->orderId = $orderId;
     }
 
-    public function getOrderProperty()
+    #[Computed]
+    public function order()
     {
         return auth()->user()->orders()->where('orders.id', $this->orderId)->with(['orderItems.productVariant.product'])->first();
     }

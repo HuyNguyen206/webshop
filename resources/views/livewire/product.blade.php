@@ -13,7 +13,7 @@
         <span class="text-3xl">{{$product->name}}</span>
         <div class="text-xl text-gray-600">{{$product->price}}</div>
         <div class="mt-4">{{$product->description}}</div>
-        <select wire:model="variant">
+        <select wire:model.live="variant">
             @foreach($product->productVariants as $variant)
                 <option value="{{$variant->id}}"> {{$variant->color}} / {{$variant->size}}</option>
             @endforeach

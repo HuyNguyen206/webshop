@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Factories\CartFactory;
 use App\Models\CartItem;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 class Cart extends Component
 {
-    public function getCartProperty()
+    #[Computed]
+    public function cart()
     {
         return CartFactory::make()->load(['cartItems.productVariant.product.featureImage']);
     }
@@ -16,7 +18,7 @@ class Cart extends Component
     public function delete(int $cartItemId)
     {
         CartItem::where('id', $cartItemId)->delete();
-        $this->emitTo(NavigationCart::class, '$refresh');
+        $this->dispatch( '$refresh')->to(NavigationCart::class);
     }
 
     public function changeQuantity(int $cartItemId, string $type = 'add')
@@ -33,13 +35,13 @@ class Cart extends Component
             $cartItem->increment('quantity');
         }
 
-        $this->emitTo(NavigationCart::class, '$refresh');
+        $this->dispatch( '$refresh')->to(NavigationCart::class);
     }
 
     public function checkout()
     {
         if (auth()->guest()) {
-            $this->dispatchBrowserEvent('banner-message', [
+            $this->dispatch('banner-message', [
                 'style' => 'success',
                 'message' => 'Your product has been added to cart!'
             ]);

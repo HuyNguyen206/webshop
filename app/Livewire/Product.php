@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Actions\Webshop\AddProductVariantToCart;
 use App\Models\Product as ProductModel;
 use Laravel\Jetstream\InteractsWithBanner;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 class Product extends Component
@@ -27,7 +28,8 @@ class Product extends Component
         ];
     }
 
-    public function getProductProperty()
+    #[Computed]
+    public function product()
     {
         return $this->product;
     }
@@ -36,11 +38,8 @@ class Product extends Component
     {
         $this->validate();
         $addProductVariantToCart->add($this->variant);
-        $this->emitTo(NavigationCart::class, '$refresh');
-        $this->dispatchBrowserEvent('banner-message', [
-            'style' => 'success',
-            'message' => 'Your product has been added to cart!'
-        ]);
+        $this->dispatch( '$refresh')->to(NavigationCart::class);
+        $this->banner('Your product has been added to cart!');
     }
 
     public function render()
